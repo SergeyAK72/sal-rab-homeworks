@@ -9,7 +9,7 @@ function addInCartMessage(title, price) {
     message = message + " ";
     message = message + "за";
     message = message + " ";
-    message = message + productName;
+    message = message + productPrice;
     message = message + " ";
     message = message + "теперь в корзине";
     console.log(message);
@@ -36,7 +36,7 @@ function addInCartCountChange(value) {
     let oldValue = value;
     let newValue;
     newValue = oldValue;
-    newValue = newValue + 1;
+    newValue = newValue ++;
 
     // создайте переменную newValue
     // присвойте ей значение oldValue
@@ -57,7 +57,7 @@ function addInCartSumChange(sum, delta) {
     newSum = oldSum + difference;
     let newSumText;
     newSumText = newSum + '₽';
-    newSumText = ${new} ₽;
+    newSumText = ${newSum} ₽;
 
     // создайте переменную newSum и присвойте ей сумму oldSum и difference
     // создайте переменную newSumText и присвойте ей результат склеивания переменной newSum и текста ' ₽'
