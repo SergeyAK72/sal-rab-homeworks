@@ -21,9 +21,7 @@ function calcShipping(sum, min, shipping) {
     let shippingSum
     if (productsSum == 0 || productsSum >= freeShippingMinSum) {
         shippingSum = 0;
-    }
-
-    else if (productsSum > 0 && productsSum < freeShippingMinSum) {
+    } else {
         shippingSum = shippingPrice;
     }
 
@@ -35,13 +33,8 @@ function calcDiscount(sum, min, discount) {
     let discountMinSum = min; // минимальная цена для скидки
     let discountPart = discount; // величина скидки в процентах
 
-    let discountSum;
-    if (productsSum >= discountMinSum) {
-        discountSum = discountPart / 100 * productsSum;
-    }
-    else if (productsSum < discountMinSum) {
-        discountSum = 0;
-    }
+    let discountSum = productsSum >= discountMinSum ? discountPart / 100 * productsSum : 0;
+
     return discountSum;
 }
 
@@ -57,8 +50,7 @@ function calcInvoice({sum, discountMinSum, discountPart, shippingFreeMinSum, shi
 
     totalSum = totalSum + shippingSum;
 
-    let freeShipping;
-    (shippingSum == 0) ? freeShipping = true : freeShipping = false;
+    let freeShipping = shippingSum == 0;
 
     return {discount: discountSum, freeShipping, shipping: shippingSum, total: totalSum};
 }
