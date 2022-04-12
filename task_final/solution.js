@@ -35,31 +35,40 @@
 
 function sendRequest(name, phone, address, goods, sum) {
     let data = {
-        client: "Иван +7(987)65-43-210",
-        order: {
-            address: "ул. Ленина, дом 2, 4 подъезд, 5 этаж, кв 53", 
-            sum: 900
+        client: {
+            name: 'name', 
+            phone: 'phone'
         },
-        goods: [
-            {
-            title: "Пицца",
-            count: 2
-            }
-        ]
+        order: {
+            address: {
+                street: 'street', 
+                house: 'house', 
+                entrance: 'entrance', 
+                floor: 'floor', 
+                flat: 'flat'
+            },
+            sum,
+        },
+        goods: []
     };
 
     let countOfGoods = goods.length;
 
-    for (let i = 0; i <= countOfGoods; i += 1) {
+    for (let i = 0; i < countOfGoods; i += 1) { // вероятно, сюда в цикл нужно сформировать объект со свойствами title и count
         data.goods.push(goods[i].title);
     }
+    
+    let goods = {
+        title: goods[i].title,
+        count: goods[i].count
+    }
 
-    data.order.address = address;
-    data.order.sum = name + phone + address + goods + sum;
+    data.order.address = 'street' + ', ' + 'house' + ', ' + 'entrance' + ', ' + 'floor' + ', ' + 'flat';
+    data.order.sum = sum;
 
-    data.client = 'Иван';
+    data.client = name + " " + phone;
 
-    let jsonData = JSON.stringify(data);
+    let jsonData = JSON.stringify({data: data});
 
     return jsonData;
 }
